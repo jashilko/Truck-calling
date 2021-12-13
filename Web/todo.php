@@ -2,6 +2,9 @@
 $todoName = htmlspecialchars($_POST['todo']);
 $todoName = trim($todoName);
 
+$todoContext = htmlspecialchars($_POST['context']);
+$todoContext = trim($todoContext);
+
 $jsonArray = array();
 
 //Если файл существует - получаем его содержимое
@@ -11,7 +14,8 @@ if (file_exists('todo.json')){
 }
 // Делаем запись в файл
 if ($todoName){
-    $jsonArray[] = $todoName;
+    $set = array($todoName, $todoContext);
+    $jsonArray[] = $set;
     file_put_contents('todo.json', json_encode($jsonArray, JSON_FORCE_OBJECT | JSON_NUMERIC_CHECK));
     header('Location: '. $_SERVER['HTTP_REFERER']);
 
@@ -28,7 +32,8 @@ if (isset($_POST['del'])){
 
 // Редактирование
 if (isset($_POST['save'])){
-    $jsonArray[$key] = @$_POST['title'];
+    $set = array(@$_POST['title'],  @$_POST['context']);   
+    $jsonArray[$key] = $set;
     file_put_contents('todo.json', json_encode($jsonArray, JSON_FORCE_OBJECT | JSON_NUMERIC_CHECK));
     header('Location: '. $_SERVER['HTTP_REFERER']);
 }
@@ -41,7 +46,7 @@ if (isset($_POST['save'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <title>Burger menu</title>
+    <title>Phones list</title>
     <style>
 
     </style>
@@ -57,7 +62,8 @@ if (isset($_POST['save'])){
                     <thead class="table-dark">
                     <tr>
                         <th scope="col">№</th>
-                        <th scope="col">Задача</th>
+                        <th scope="col">Телефон</th>
+                        <th scope="col">Контекст</th>
                         <th scope="col">Действие</th>
                     </tr>
                     </thead>
@@ -66,7 +72,9 @@ if (isset($_POST['save'])){
                 foreach ($jsonArray as $key => $todo): ?>
                     <tr>
                         <th scope="row"><?php echo $key + 1 ;?></th>
-                        <td><?php echo $todo; ?></td>
+                        <td><?php echo $todo[0]; ?></td>
+                        <td><?php echo $todo[1]; ?></td>
+
                         <td>
                             <button type="submit" class="btn btn-sm btn-success" data-toggle="modal" data-target="#edit<?php echo $key;?>"><i class="fas fa-edit"></i></button>
                             <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete<?php echo $key;?>"><i class="fas fa-trash-alt"></i></button>
@@ -106,7 +114,8 @@ if (isset($_POST['save'])){
 
                                         <form action="" method="post" class="mt-2">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="title" value="<?php echo $todo; ?>">
+                                                <input type="text" class="form-control" name="title" value="<?php echo $todo[0]; ?>" placeholder="Телефон вводить с 79..">
+                                                <input type="text" class="form-control" name="context" value="<?php echo $todo[1]; ?>"placeholder="Контекст" >
                                             </div>
                                             <input type="hidden" name="todo_name" value="<?php echo $key;?>">
                                             <div class="modal-footer">
@@ -139,8 +148,8 @@ if (isset($_POST['save'])){
             <div class="modal-body">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  method="post">
                     <div class="input-group">
-                    <input type="text" class="form-control" name="todo" >
-                    <input type="text" class="form-control" name="context" >
+                    <input type="text" class="form-control" name="todo" placeholder="Телефон вводить с 79..">
+                    <input type="text" class="form-control" name="context" placeholder="Контекст">
                     </div>
             </div>
             <div class="modal-footer">
