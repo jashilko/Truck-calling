@@ -9,7 +9,7 @@ $extra = 'phones.php';
 if ((!isset($_SESSION['user1'])) && ($_GET['mode'] != "login")) // if there is no valid session
 {
     //header("Location: sms-kos.php?mode=login");
-    header("Location: http://$host$uri/$extra?mode=login");
+    header("Location: https://$host$uri/$extra?mode=login");
 }
 if (isset($_GET['mode']))
 {
@@ -87,19 +87,19 @@ switch ($mode)
                     $_SESSION['user1'] = $_POST['username'];
                     // redirect to required page
                     //header("Location: sms-kos.php?mode=main&action=view");
-                    header("Location: http://$host$uri/$extra?mode=main");
+                    header("Location: https://$host$uri/$extra?mode=main");
                 }
                 else
                 {
                     // didn't auth go back to loginform
                     //header("Location: sms-kos.php?mode=login");
-                    header("Location: http://$host$uri/$extra?mode=login");
+                    header("Location: https://$host$uri/$extra?mode=login");
                     
                 }
             }
             else
             {
-                header("Location: http://$host$uri/$extra?mode=login");
+                header("Location: https://$host$uri/$extra?mode=login");
             }
         }
         else
