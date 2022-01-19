@@ -9,7 +9,7 @@ $extra = 'phones.php';
 if ((!isset($_SESSION['user1'])) && ($_GET['mode'] != "login")) // if there is no valid session
 {
     //header("Location: sms-kos.php?mode=login");
-    header("Location: https://$host$uri/$extra?mode=login");
+    header("Location: $uri/$extra?mode=login");
 }
 if (isset($_GET['mode']))
 {
@@ -46,7 +46,9 @@ switch ($mode)
         {
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head><title>Шаблоны</title>
+<html><head>
+<meta charset="utf-8">    
+<title>Шаблоны</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -87,19 +89,19 @@ switch ($mode)
                     $_SESSION['user1'] = $_POST['username'];
                     // redirect to required page
                     //header("Location: sms-kos.php?mode=main&action=view");
-                    header("Location: https://$host$uri/$extra?mode=main");
+                    header("Location: $uri/$extra?mode=main");
                 }
                 else
                 {
                     // didn't auth go back to loginform
                     //header("Location: sms-kos.php?mode=login");
-                    header("Location: https://$host$uri/$extra?mode=login");
+                    header("Location: $uri/$extra?mode=login");
                     
                 }
             }
             else
             {
-                header("Location: https://$host$uri/$extra?mode=login");
+                header("Location: $uri/$extra?mode=login");
             }
         }
         else
@@ -182,7 +184,7 @@ if(isset($_POST["sch"])){
 <html lang="en">
 
 <head>
-    <meta charset="windows-1251">
+<meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
