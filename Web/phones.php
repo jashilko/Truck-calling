@@ -48,7 +48,7 @@ switch ($mode)
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
 <meta charset="utf-8">    
-<title>Шаблоны</title>
+<title>РЁР°Р±Р»РѕРЅС‹</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -57,11 +57,11 @@ switch ($mode)
                                
                                 <form class="mb-3" id="newrecord" action="" method="post">
                                 <div class="center-wrapper">
-                                <div class="form-label"><h2>Вход</h2></div>
-                                <div class="form-label">Пользователь: </div> <input class="form-control" type="text" name="username" value="" /><br/>
-                                <div class="form-label">Пароль: </div> <input class="form-control" type="password" name="password" value="" /><br/>
+                                <div class="form-label"><h2>Р’С…РѕРґ</h2></div>
+                                <div class="form-label">РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ: </div> <input class="form-control" type="text" name="username" value="" /><br/>
+                                <div class="form-label">РџР°СЂРѕР»СЊ: </div> <input class="form-control" type="password" name="password" value="" /><br/>
                                 <div class="submit-container">
-                                <input type="submit" class="btn btn-primary" name="login" value="ОК">
+                                <input type="submit" class="btn btn-primary" name="login" value="РћРљ">
                                 </div>
                                 </div>
                                 </form>
@@ -114,7 +114,7 @@ switch ($mode)
     case "main": 
     {
 
-// Список телефонов
+// РЎРїРёСЃРѕРє С‚РµР»РµС„РѕРЅРѕРІ
 $todoName = htmlspecialchars($_POST['todo']);
 $todoName = trim($todoName);
 
@@ -123,12 +123,12 @@ $todoContext = trim($todoContext);
 
 $jsonArray = array();
 
-//Если файл существует - получаем его содержимое
+//Р•СЃР»Рё С„Р°Р№Р» СЃСѓС‰РµСЃС‚РІСѓРµС‚ - РїРѕР»СѓС‡Р°РµРј РµРіРѕ СЃРѕРґРµСЂР¶РёРјРѕРµ
 if (file_exists('todo.json')) {
     $json = file_get_contents('todo.json');
     $jsonArray = json_decode($json, true);
 }
-// Делаем запись в файл
+// Р”РµР»Р°РµРј Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р»
 if ($todoName) {
     $set = array($todoName, $todoContext);
     $jsonArray[] = $set;
@@ -136,7 +136,7 @@ if ($todoName) {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
-// Удаление записи
+// РЈРґР°Р»РµРЅРёРµ Р·Р°РїРёСЃРё
 $key = @$_POST['todo_name'];
 if (isset($_POST['del'])) {
     unset($jsonArray[$key]);
@@ -144,7 +144,7 @@ if (isset($_POST['del'])) {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
-// Редактирование
+// Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ
 if (isset($_POST['save'])) {
     $set = array(@$_POST['title'],  @$_POST['context']);
     $jsonArray[$key] = $set;
@@ -153,11 +153,11 @@ if (isset($_POST['save'])) {
 }
 
 // ----------------------------
-// Расписание
+// Р Р°СЃРїРёСЃР°РЅРёРµ
 // ----------------------------
 $jsonsch = array();
 
-//Если файл существует - получаем его содержимое
+//Р•СЃР»Рё С„Р°Р№Р» СЃСѓС‰РµСЃС‚РІСѓРµС‚ - РїРѕР»СѓС‡Р°РµРј РµРіРѕ СЃРѕРґРµСЂР¶РёРјРѕРµ
 if (file_exists('schedule.json')) {
     $jsons = file_get_contents('schedule.json');
     $jsonsch = json_decode($jsons, true);
@@ -188,7 +188,7 @@ if(isset($_POST["sch"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <title>Список телефонов</title>
+    <title>РЎРїРёСЃРѕРє С‚РµР»РµС„РѕРЅРѕРІ</title>
     <style>
 
     </style>
@@ -204,10 +204,10 @@ if(isset($_POST["sch"])){
                     <table class="table table-bordered table-sm">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col" style="width: 10%">№</th>
-                                <th scope="col" style="width: 50%">Телефон</th>
-                                <th scope="col"style="width: 10%">Добавочный</th>
-                                <th scope="col" style="width: 20%">Действие</th>
+                                <th scope="col" style="width: 10%">в„–</th>
+                                <th scope="col" style="width: 50%">РўРµР»РµС„РѕРЅ</th>
+                                <th scope="col"style="width: 10%">Р”РѕР±Р°РІРѕС‡РЅС‹Р№</th>
+                                <th scope="col" style="width: 20%">Р”РµР№СЃС‚РІРёРµ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -226,7 +226,7 @@ if(isset($_POST["sch"])){
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Вы хотите удалить запись №<?php echo $key + 1; ?></h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Р’С‹ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ в„–<?php echo $key + 1; ?></h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -236,7 +236,7 @@ if(isset($_POST["sch"])){
                                                             <div class="input-group">
                                                                 <input type="hidden" name="todo_name" value="<?php echo $key; ?>">
                                                             </div>
-                                                            <button class="btn btn-danger del" name="del">Удалить</button>
+                                                            <button class="btn btn-danger del" name="del">РЈРґР°Р»РёС‚СЊ</button>
                                                     </div>
                                                     </form>
                                                 </div>
@@ -248,7 +248,7 @@ if(isset($_POST["sch"])){
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Изменить запись</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">РР·РјРµРЅРёС‚СЊ Р·Р°РїРёСЃСЊ</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -257,12 +257,12 @@ if(isset($_POST["sch"])){
 
                                                         <form action="" method="post" class="mt-2">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" name="title" value="<?php echo $todo[0]; ?>" placeholder="Телефон вводить с 89..">
-                                                                <input type="text" class="form-control" name="context" value="<?php echo $todo[1]; ?>" placeholder="Добавочный">
+                                                                <input type="text" class="form-control" name="title" value="<?php echo $todo[0]; ?>" placeholder="РўРµР»РµС„РѕРЅ РІРІРѕРґРёС‚СЊ СЃ 89..">
+                                                                <input type="text" class="form-control" name="context" value="<?php echo $todo[1]; ?>" placeholder="Р”РѕР±Р°РІРѕС‡РЅС‹Р№">
                                                             </div>
                                                             <input type="hidden" name="todo_name" value="<?php echo $key; ?>">
                                                             <div class="modal-footer">
-                                                                <button type="submit" name="save" class="btn btn-sm btn-success p-1 pt-0" data-target="#edit<?php echo $key; ?>">Обновить</button>
+                                                                <button type="submit" name="save" class="btn btn-sm btn-success p-1 pt-0" data-target="#edit<?php echo $key; ?>">РћР±РЅРѕРІРёС‚СЊ</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -282,8 +282,8 @@ if(isset($_POST["sch"])){
                         <table class="table table-bordered table-sm">
                             <thead class="table-dark">
                                 <tr>
-                                    <th scope="col">День недели</th>
-                                    <th scope="col">Время запуска</th>
+                                    <th scope="col">Р”РµРЅСЊ РЅРµРґРµР»Рё</th>
+                                    <th scope="col">Р’СЂРµРјСЏ Р·Р°РїСѓСЃРєР°</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -293,28 +293,28 @@ if(isset($_POST["sch"])){
                                     <tr>
                                         <td><?php switch ($keysch) {
                                                 case "1":
-                                                    echo 'Пн';
+                                                    echo 'РџРЅ';
                                                     break;
                                                 case "2":
-                                                    echo 'Вт';
+                                                    echo 'Р’С‚';
                                                     break;
                                                 case "3":
-                                                    echo 'Ср';
+                                                    echo 'РЎСЂ';
                                                     break;
                                                 case "4":
-                                                    echo 'Чт';
+                                                    echo 'Р§С‚';
                                                     break;
                                                 case "5":
-                                                    echo 'Пт';
+                                                    echo 'РџС‚';
                                                     break;
                                                 case "6":
-                                                    echo 'Сб';
+                                                    echo 'РЎР±';
                                                     break;
                                                 case "7":
-                                                    echo 'Вс';
+                                                    echo 'Р’СЃ';
                                                     break;
                                                 default:
-                                                    echo "Битый файл";
+                                                    echo "Р‘РёС‚С‹Р№ С„Р°Р№Р»";
                                                     break;
                                             }; ?></td>
                                         <td><input style="background-color: #f5f5f5;" type="time" name="sch[]" id="inputMDEx1" class="form-control form-control-sm" value=<?php echo $sch; ?> min="00:00" max="23:59"></td>
@@ -324,7 +324,7 @@ if(isset($_POST["sch"])){
                             </tbody>
 
                         </table>
-                        <input type="submit" class="btn btn-outline-success " value="Сохранить расписание">
+                        <input type="submit" class="btn btn-outline-success " value="РЎРѕС…СЂР°РЅРёС‚СЊ СЂР°СЃРїРёСЃР°РЅРёРµ">
                     </form>
                 </div>
             </div>
@@ -335,7 +335,7 @@ if(isset($_POST["sch"])){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Добавить запись</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Р”РѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -343,12 +343,12 @@ if(isset($_POST["sch"])){
                 <div class="modal-body">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="todo" placeholder="Телефон вводить с 89..">
-                            <input type="text" class="form-control" name="context" placeholder="Добавочный">
+                            <input type="text" class="form-control" name="todo" placeholder="РўРµР»РµС„РѕРЅ РІРІРѕРґРёС‚СЊ СЃ 89..">
+                            <input type="text" class="form-control" name="context" placeholder="Р”РѕР±Р°РІРѕС‡РЅС‹Р№">
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary send" data-send="1">Создать</button>
+                    <button class="btn btn-primary send" data-send="1">РЎРѕР·РґР°С‚СЊ</button>
                 </div>
                 </form>
             </div>
