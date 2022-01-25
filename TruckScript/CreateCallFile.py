@@ -120,7 +120,7 @@ def create_call_files():
                 if str(value['1']) == "": # Без контекста
                     file.write("Channel: local/{}@avtoobzvon\n".format(value['0']))
                     file.write("CallerID:\n")
-                    file.write("MaxRetries: 1\n")
+                    file.write("MaxRetries: 0\n")
                     file.write("RetryTime: 60\n")
                     file.write("WaitTime: 300\n")
                     file.write("Context: avtoobzvon\n")

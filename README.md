@@ -19,7 +19,7 @@
 ```
 Channel: local/89161111111@avtoobzvon
 CallerID:
-MaxRetries: 1
+MaxRetries: 0
 RetryTime: 60
 WaitTime: 300
 Context: avtoobzvon
