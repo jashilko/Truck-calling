@@ -9,8 +9,8 @@ import logging
 
 
 
-dir_current = os.path.dirname(__file__) + '/'
-#dir_current = '/home/Track-calling/Truck-calling/TruckScript/'
+#dir_current = os.path.dirname(__file__) + '/'
+dir_current = '/home/Track-calling/Truck-calling/TruckScript/'
 
 print("Current dir - " + dir_current)
 path = dir_current + 'settings.ini'
@@ -20,7 +20,7 @@ dir_store = conf.get_setting(path, 'Dirs', 'dir_store')
 
 date_log = datetime.datetime.now().strftime("%Y-%m-%d")
 #logmode = conf.get_setting(path, 'General', 'logmode')
-logmode = 'INFO'
+logmode = 'DEBUG'
 if logmode == 'INFO':
     logging.basicConfig(filename = dir_current + "log/" + date_log + "-log.txt", level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 elif logmode == 'DEBUG':
@@ -81,12 +81,14 @@ def getSchedule():
             data = json.load(read_file)
             dayOfWeek = datetime.datetime.today().weekday()
             curhour = datetime.time(datetime.datetime.now().hour)
+            curmin = datetime.time(datetime.datetime.now().minute)
             schhour = datetime.time(int(data[days_of_week[dayOfWeek]][:2]))
+            schmin = datetime.time(int(data[days_of_week[dayOfWeek]][3:5]))
             logging.debug('Time in schedule - ' + data[days_of_week[dayOfWeek]])
             if data[days_of_week[dayOfWeek]][3:5] == "00" and data[days_of_week[dayOfWeek]][:2] == "00":
                 logging.info('The time is 00:00. No work today')
                 return False
-            if schhour == curhour:
+            if schhour <= curhour and schmin <= curmin:
                 logging.info('Time to work now. Schedule time: {}'.format(data[days_of_week[dayOfWeek]]))
                 return True
             else:
