@@ -80,10 +80,10 @@ def getSchedule():
         with open(file_sch, "r") as read_file:
             data = json.load(read_file)
             dayOfWeek = datetime.datetime.today().weekday()
-            curhour = datetime.time(datetime.datetime.now().hour)
-            curmin = datetime.time(datetime.datetime.now().minute)
-            schhour = datetime.time(int(data[days_of_week[dayOfWeek]][:2]))
-            schmin = datetime.time(int(data[days_of_week[dayOfWeek]][3:5]))
+            curhour = datetime.datetime.now().hour
+            curmin = datetime.datetime.now().minute
+            schhour = int(data[days_of_week[dayOfWeek]][:2])
+            schmin = int(data[days_of_week[dayOfWeek]][3:5])
             logging.debug('Time in schedule - ' + data[days_of_week[dayOfWeek]])
             if data[days_of_week[dayOfWeek]][3:5] == "00" and data[days_of_week[dayOfWeek]][:2] == "00":
                 logging.info('The time is 00:00. No work today')
