@@ -141,6 +141,7 @@ def create_call_files():
                     file.write("Extension: play\n")
                     file.write("Priority: 1")
                     count_context += 1
+                logging.debug("Create file {}".format(one_file_name))
         except Exception as e:
             logging.error("Error with saving files in store dir: %s" % str(e))
             #print("Ошибка при сохранении файлов в store: %s" % str(e))
@@ -148,6 +149,7 @@ def create_call_files():
 
 def move_call_files():
     conf.update_setting(path, 'CreateCallFiles', 'Status', "Working")
+    conf.update_setting(path, 'CreateCallFiles', 'Start', str(date.today()))
     bundle = int(conf.get_setting(path, 'CreateCallFiles', 'Bundle'))
     timeout = int(conf.get_setting(path, 'CreateCallFiles', 'Timeout'))
     dir_target = conf.get_setting(path, 'Dirs', 'dir_target')
@@ -159,6 +161,7 @@ def move_call_files():
         for file in os.listdir(dir_store):
             if os.path.isfile(os.path.join(dir_store, file)):
                 move(os.path.join(dir_store, file), os.path.join(dir_target, file))
+                logging.debug("Move file {}".format(file))
                 count_for_logs += 1
                 count_file += 1
                 if count_file == bundle:
